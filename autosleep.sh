@@ -6,7 +6,7 @@
 # If they haven't, it will force the system to sleep.
 #
 
-log=/home/kostasz/scripts/idle/log
+log=/home/user/scripts/idle/log
 
 # Extract the RX/TX
 rx=`/sbin/ifconfig eth0 | grep -m 1 RX | cut -d: -f2 | sed 's/ //g' | sed 's/errors//g'`
@@ -19,16 +19,16 @@ echo "rx: "$rx >> $log
 echo "tx: "$tx >> $log
 
 # Check if RX/TX Files Exist
-if [ -f /home/kostasz/scripts/idle/rx ] || [ -f /home/kostasz/scripts/idle/tx ]; then
-	p_rx=`cat /home/kostasz/scripts/idle/rx`  ## store previous rx value in p_rx
-	p_tx=`cat /home/kostasz/scripts/idle/tx`  ## store previous tx value in p_tx
+if [ -f /home/user/scripts/idle/rx ] || [ -f /home/user/scripts/idle/tx ]; then
+	p_rx=`cat /home/user/scripts/idle/rx`  ## store previous rx value in p_rx
+	p_tx=`cat /home/user/scripts/idle/tx`  ## store previous tx value in p_tx
 	
 	echo "Previous Values" >> $log
 	echo "p_rx: "$p_rx >> $log
 	echo "t_rx: "$p_tx >> $log
 
-	echo $rx > /home/kostasz/scripts/idle/rx    ## Write packets to RX file
-	echo $tx > /home/kostasz/scripts/idle/tx    ## Write packets to TX file
+	echo $rx > /home/user/scripts/idle/rx    ## Write packets to RX file
+	echo $tx > /home/user/scripts/idle/tx    ## Write packets to TX file
 	
 	# Calculate threshold limit 
 	t_rx=`expr $p_rx + 3000`
@@ -42,14 +42,14 @@ if [ -f /home/kostasz/scripts/idle/rx ] || [ -f /home/kostasz/scripts/idle/tx ];
 	if [ $rx -le $t_rx ] || [ $tx -le $t_tx ]; then  ## If network packets have not changed that much
 		echo "Suspend to Ram ..." >> $log
 		echo " " >> $log
-		rm /home/kostasz/scripts/idle/rx
-		rm /home/kostasz/scripts/idle/tx
+		rm /home/user/scripts/idle/rx
+		rm /home/user/scripts/idle/tx
 		sudo pm-suspend  ## Force Sleep
 	fi
 	
 #Check if RX/TX Files Doesn't Exist
 else 
-	echo $rx > /home/kostasz/scripts/idle/rx ## Write packets to file
-	echo $tx > /home/kostasz/scripts/idle/tx
+	echo $rx > /home/user/scripts/idle/rx ## Write packets to file
+	echo $tx > /home/user/scripts/idle/tx
 	echo " " >> $log
 fi 
