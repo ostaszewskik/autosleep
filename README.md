@@ -1,4 +1,5 @@
 # Autosleep
+
 A simple bash script to automatically suspend idle home server to save electricity
 
 ## How it works
