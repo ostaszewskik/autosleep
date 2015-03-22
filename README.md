@@ -5,22 +5,22 @@ A simple bash script to automatically suspend idle home server to save electrici
 
 It measures an in/outbound network traffic and logs in given intervals. If the amount of data sent from the server don't exceeds a set limit, the server suspends itself. It's a very useful script intended to use in home servers that are not meant to be turned on constantly. 
 
-You can _wake_ your home server using **wakeonlan** tool by typing
+You can 'wake' your home server using **wakeonlan** tool by typing:
 
 	wakeonlan [server's MAC address]
 
-And after the transmission (video streaming, file syncynig, torrent download) it will suspend itself.       
-
+And after the transmission (video streaming, file syncynig, torrent download) is ended it will suspend itself. 
 
 ## Setup
 
-On Debian based system you need to add a rule to sudoers file (sudo visudo):
+On Debian-based system you need to add a rule to sudoers file (_sudo visudo_):
 
-user ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend
+	user ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend
 
 to be able to execute te script correctly. Then setup a cron job like this:
 
-*/15 **** sh /path/to/autosleep.sh
+	crontab -e
+	*/15 **** sh /path/to/autosleep.sh
 
 ## License
 
