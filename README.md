@@ -23,6 +23,8 @@ to be able to execute te script correctly. Then setup a cron job like this:
 	crontab -e
 	*/15 **** sh /path/to/autosleep.sh
 
+_2017: added signed tag_
+
 ## License
 
 This is just a modified version of a script I found in [Ubuntu Forums](http://ubuntuforums.org/showthread.php?t=530973&p=5195355#post5195355), originally posted by the user **vashwood**. I claim no copyright to it.
